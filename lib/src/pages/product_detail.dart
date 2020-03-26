@@ -23,7 +23,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     controller =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
     animation = Tween<double>(begin: 0, end: 1).animate(
-         CurvedAnimation(parent: controller, curve: Curves.easeInToLinear));
+        CurvedAnimation(parent: controller, curve: Curves.easeInToLinear));
     controller.forward();
   }
 
@@ -157,6 +157,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
   }
 
   Widget _detailWidget() {
+    double ww = MediaQuery.of(context).size.width;
+    double hh = MediaQuery.of(context).size.height;
     return DraggableScrollableSheet(
       maxChildSize: .8,
       initialChildSize: .53,
@@ -189,7 +191,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                 ),
                 SizedBox(height: 10),
                 Container(
-                  child: Row(
+                  width: ww,
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -365,6 +368,9 @@ class _ProductDetailPageState extends State<ProductDetailPage>
 
   @override
   Widget build(BuildContext context) {
+    double ww = MediaQuery.of(context).size.width;
+    double hh = MediaQuery.of(context).size.height;
+
     return Scaffold(
       floatingActionButton: _flotingButton(),
       body: SafeArea(
@@ -378,17 +384,20 @@ class _ProductDetailPageState extends State<ProductDetailPage>
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           )),
-          child: Stack(
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  _appBar(),
-                  _productImage(),
-                  _categoryWidget(),
-                ],
-              ),
-              _detailWidget()
-            ],
+          child: Container(
+            height: hh * 0.8,
+            child: Stack(
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    _appBar(),
+                    _productImage(),
+                    _categoryWidget(),
+                  ],
+                ),
+                _detailWidget()
+              ],
+            ),
           ),
         ),
       ),

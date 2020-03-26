@@ -111,52 +111,47 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            SingleChildScrollView(
-              child: Container(
-                height: AppTheme.fullHeight(context) - 50,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                  colors: [
-                    Color(0xfffbfbfb),
-                    Color(0xfff7f7f7),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                )),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _appBar(),
-                    _title(),
-                    Expanded(
-                        child:AnimatedSwitcher(
-                          duration: Duration(milliseconds: 300),
-                          switchInCurve: Curves.easeInToLinear,
-                          switchOutCurve: Curves.easeOutBack,
-                          child:  isHomePageSelected
-                            ? MyHomePage()
-                            : Align(
-                              alignment: Alignment.topCenter,
-                              child:ShopingCartPage(),
-                            )
-                        ))
-                  ],
+        body: SafeArea(
+          child: Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              SingleChildScrollView(
+                child: Container(
+                  height: AppTheme.fullHeight(context) - 50,
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                    colors: [
+                      Color(0xfffbfbfb),
+                      Color(0xfff7f7f7),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  )),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      _appBar(),
+                      _title(),
+                      Expanded(
+                          child: AnimatedSwitcher(
+                              duration: Duration(milliseconds: 300),
+                              switchInCurve: Curves.easeInToLinear,
+                              switchOutCurve: Curves.easeOutBack,
+                              child: isHomePageSelected
+                                  ? MyHomePage()
+                                  : Align(
+                                      alignment: Alignment.topCenter,
+//                                      child: ShopingCartPage(),
+                                    )))
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-                bottom: 0,
-                right: 0,
-                child: CustomBottomNavigationBar(
-                  onIconPresedCallback: onBottomIconPressed,
-                ))
-          ],
+            ],
+          ),
         ),
-      ),
-    );
+        bottomNavigationBar: CustomBottomNavigationBar(
+          onIconPresedCallback: onBottomIconPressed,
+        ));
   }
 }

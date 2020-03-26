@@ -19,7 +19,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   Widget _icon(IconData icon, {Color color = LightColor.iconColor}) {
     return Container(
       padding: EdgeInsets.all(10),
@@ -50,23 +49,71 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _productWidget() {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      width: AppTheme.fullWidth(context),
-      height: AppTheme.fullWidth(context) * .7,
-      child: GridView(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              childAspectRatio: 4 / 3,
-              mainAxisSpacing: 30,
-              crossAxisSpacing: 20),
-          padding: EdgeInsets.only(left: 20),
-          scrollDirection: Axis.horizontal,
-          children: AppData.productList
-              .map((product) => ProductCard(
-                    product: product,
-                  ))
-              .toList()),
+    return SingleChildScrollView(
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 10),
+        width: AppTheme.fullWidth(context),
+        height: AppTheme.fullWidth(context) * 1.1,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: AppTheme.fullWidth(context) * .8,
+                width: AppTheme.fullWidth(context),
+                child: GridView(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,
+                        childAspectRatio: 4 / 3,
+                        mainAxisSpacing: 30,
+                        crossAxisSpacing: 20),
+                    padding: EdgeInsets.only(left: 20),
+                    scrollDirection: Axis.horizontal,
+                    children: AppData.productList
+                        .map((product) => ProductCard(
+                              product: product,
+                            ))
+                        .toList()),
+              ),
+              Container(
+                height: AppTheme.fullWidth(context) * .8,
+                width: AppTheme.fullWidth(context),
+                margin: EdgeInsets.symmetric(vertical: 20),
+                child: GridView(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,
+                        childAspectRatio: 4 / 3,
+                        mainAxisSpacing: 30,
+                        crossAxisSpacing: 20),
+                    padding: EdgeInsets.only(left: 20),
+                    scrollDirection: Axis.horizontal,
+                    children: AppData.productList
+                        .map((product) => ProductCard(
+                              product: product,
+                            ))
+                        .toList()),
+              ),
+              Container(
+                height: AppTheme.fullWidth(context) * .8,
+                width: AppTheme.fullWidth(context),
+                margin: EdgeInsets.symmetric(vertical: 20),
+                child: GridView(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,
+                        childAspectRatio: 4 / 3,
+                        mainAxisSpacing: 30,
+                        crossAxisSpacing: 20),
+                    padding: EdgeInsets.only(left: 20),
+                    scrollDirection: Axis.horizontal,
+                    children: AppData.productList
+                        .map((product) => ProductCard(
+                              product: product,
+                            ))
+                        .toList()),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -102,9 +149,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[_search(), _categoryWidget(), _productWidget()],
-      );
+    double ww = MediaQuery.of(context).size.width;
+    double hh = MediaQuery.of(context).size.height;
+
+    return Container(
+      height: hh * 0.8,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[_search(), _categoryWidget(), _productWidget()],
+        ),
+      ),
+    );
   }
 }

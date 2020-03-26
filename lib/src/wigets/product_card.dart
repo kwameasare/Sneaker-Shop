@@ -28,15 +28,15 @@ class _ProductCardState extends State<ProductCard> {
         Navigator.of(context).pushNamed('/detail');
         setState(() {
           // model.isSelected = !model.isSelected;
-        //   AppData.productList.forEach((x) {
-        //     if (x.id == model.id && x.name == model.name) {
-        //       return;
-        //     }
-        //     x.isSelected = false;
-        //   });
-        //   var m = AppData.productList
-        //       .firstWhere((x) => x.id == model.id && x.name == model.name);
-        //   m.isSelected = !m.isSelected;
+          //   AppData.productList.forEach((x) {
+          //     if (x.id == model.id && x.name == model.name) {
+          //       return;
+          //     }
+          //     x.isSelected = false;
+          //   });
+          //   var m = AppData.productList
+          //       .firstWhere((x) => x.id == model.id && x.name == model.name);
+          //   m.isSelected = !m.isSelected;
         });
       },
       child: Container(
@@ -48,22 +48,25 @@ class _ProductCardState extends State<ProductCard> {
                 color: Color(0xfff8f8f8), blurRadius: 15, spreadRadius: 10),
           ],
         ),
-        margin: EdgeInsets.symmetric(vertical: !model.isSelected ? 20 : 0),
+//        margin: EdgeInsets.symmetric(vertical: !model.isSelected ? 20 : 0),
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
             Positioned(
-              left: 0,
-              top: 0,
-              child: IconButton(
-                icon: Icon(model.isliked ? Icons.favorite : Icons.favorite_border, color: model.isliked ? LightColor.red : LightColor.iconColor,),
-                 onPressed: (){
-                   setState(() {
-                     model.isliked = !model.isliked ;
-                   });
-                 })
-            ),
+                left: 0,
+                top: 0,
+                child: IconButton(
+                    icon: Icon(
+                      model.isliked ? Icons.favorite : Icons.favorite_border,
+                      color:
+                          model.isliked ? LightColor.red : LightColor.iconColor,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        model.isliked = !model.isliked;
+                      });
+                    })),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
